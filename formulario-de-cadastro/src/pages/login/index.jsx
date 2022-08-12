@@ -13,7 +13,6 @@ import logo from '../../assets/logo.svg';
 import { schema } from '../../validators/login/login';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -21,16 +20,6 @@ import { AuthContext } from '../../contexts/AuthContext';
 
 const Login = () => {
     const { loginData } = useContext(AuthContext)
-    // console.log(loginData)
-
-    const onError = () => {
-        toast.error('Ops, algo deu errado!', {
-            position: 'top-right',
-            autoClose: 1000,
-        });
-    };
-
-
 
     const {
         register,

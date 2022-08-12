@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from 'react';
 import { api } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
 
 export const AuthContext = createContext({});
 
@@ -24,24 +25,15 @@ const AuthProvider = ({ children }) => {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        async function loadUser() {
-            const token = localStorage.getItem('@TOKEN');
-
-            if (token) {
-                try {
-                    api.defaults.headers.authorization = `Bearer ${token}`;
-                    const { data } = await api.get('/profile');
-
-                    setUser(data);
-                } catch (err) {
-                    console.log(err);
-                }
-            }
-            setLoading(false);
+    async function registerData(data) {
+        const response = await api.post('/users', data).catch(err => onError());
+        if (response.status === 201) {
+            onSuccess();
+            navigate('/login'), { replace: true };
         }
-        loadUser();
-    }, []);
+        console.log(response);
+        localStorage.clear();
+    }
 
     const loginData = async data => {
         const response = await api
@@ -62,8 +54,29 @@ const AuthProvider = ({ children }) => {
         localStorage.setItem('@USERID', userResponse.id);
     };
 
+    useEffect(() => {
+        async function loadUser() {
+            const token = localStorage.getItem('@TOKEN');
+
+            if (token) {
+                try {
+                    api.defaults.headers.authorization = `Bearer ${token}`;
+                    const { data } = await api.get('/profile');
+
+                    setUser(data);
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+            setLoading(false);
+        }
+        loadUser();
+    }, []);
+
     return (
-        <AuthContext.Provider value={{ user, loginData, loading }}>
+        <AuthContext.Provider
+            value={{ user, loginData, loading, registerData }}
+        >
             {children}
         </AuthContext.Provider>
     );

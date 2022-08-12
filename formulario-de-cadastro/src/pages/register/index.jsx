@@ -6,13 +6,13 @@ import Linke from './style';
 import { schema } from '../../validators/register/register';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
-
-import { api } from '../../services/api';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Register = () => {
+    const { registerData } = useContext(AuthContext);
+
     const {
         register,
         handleSubmit,
@@ -20,31 +20,6 @@ const Register = () => {
     } = useForm({
         resolver: yupResolver(schema),
     });
-
-    let navigate = useNavigate();
-
-    const onError = () => {
-        toast.error('Email ou nome ja utilizados!', {
-            position: 'top-right',
-            autoClose: 1000,
-        });
-    };
-    const onSuccess = () => {
-        toast.success('Conta criada com sucesso!', {
-            position: 'top-right',
-            autoClose: 1000,
-        });
-    };
-
-    async function registerData(data) {
-        const response = await api.post('/users', data).catch(err => onError());
-        if (response.status === 201) {
-            onSuccess();
-            navigate('/login'), { replace: true }; 
-        }
-        console.log(response);
-        localStorage.clear();
-    }
 
     return (
         <motion.div
