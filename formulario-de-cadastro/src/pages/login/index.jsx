@@ -1,9 +1,8 @@
-import { Container } from '../../style/global';
+import { Container, Input } from '../../style/global';
 import { useContext } from 'react';
 import { Title1, Headline, HeadlineBold } from '../../style/typography';
 import {
     ContainerForm,
-    Input,
     Button,
     ButtonCadastro,
     ContainerButtonCadastro,
@@ -13,13 +12,11 @@ import logo from '../../assets/logo.svg';
 import { schema } from '../../validators/login/login';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
 import { AuthContext } from '../../contexts/AuthContext';
 
-
 const Login = () => {
-    const { loginData } = useContext(AuthContext)
+    const { loginData } = useContext(AuthContext);
 
     const {
         register,

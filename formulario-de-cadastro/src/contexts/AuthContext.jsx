@@ -2,13 +2,14 @@ import { createContext, useEffect, useState } from 'react';
 import { api } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useForm } from 'react-hook-form';
 
 export const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [techs, setTechs] = useState([]);
 
     const onError = () => {
         toast.error('Ops, algo deu errado!', {
@@ -31,7 +32,6 @@ const AuthProvider = ({ children }) => {
             onSuccess();
             navigate('/login'), { replace: true };
         }
-        console.log(response);
         localStorage.clear();
     }
 
@@ -73,9 +73,28 @@ const AuthProvider = ({ children }) => {
         loadUser();
     }, []);
 
+    async function deleteTech(id) {
+        const response = await api.delete(`/users/techs/${id}`).then(
+            toast.error('Tecnologia deletado com sucesso!', {
+                position: 'top-right',
+                autoClose: 1000,
+            })
+        );
+    }
+
     return (
         <AuthContext.Provider
-            value={{ user, loginData, loading, registerData }}
+            value={{
+                user,
+                loginData,
+                loading,
+                registerData,
+                isModalOpen,
+                setIsModalOpen,
+                deleteTech,
+                techs,
+                setTechs,
+            }}
         >
             {children}
         </AuthContext.Provider>

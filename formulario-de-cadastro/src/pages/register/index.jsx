@@ -1,5 +1,5 @@
-import { Container } from '../../style/global';
-import { ContainerForm, Form, Input, Button, Header } from './style';
+import { Container, Input } from '../../style/global';
+import { ContainerForm, Form, Button, Header } from './style';
 import { Title1, Headline } from '../../style/typography';
 import logo from '../../assets/logo.svg';
 import Linke from './style';
