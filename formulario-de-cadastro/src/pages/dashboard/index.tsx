@@ -15,25 +15,21 @@ import { useContext, useEffect, useState } from 'react';
 import TechList from '../../components/TechsList';
 import Lottie from 'react-lottie';
 import animationData from './lf30_editor_56xvg3wv.json';
-import { api } from '../../services/api';
 
 const Dashboard = () => {
     const [animationState, setAnimationState] = useState({
         isStopped: false,
         isPaused: false,
     });
-    const { user, loading, setTechs } = useContext(AuthContext);
-
-    const loadTechs = async () => {
-        await api.get('/profile').then(res => setTechs(res.data.techs))
-    };
-    useEffect(() => {
-        loadTechs();
-    });
+    const { user, loading, loadTechs } = useContext(AuthContext);
 
     const storageClear = () => {
         localStorage.clear();
     };
+
+    useEffect(() => {
+        loadTechs();
+    }, []);
 
     const defaultOptions = {
         loop: true,

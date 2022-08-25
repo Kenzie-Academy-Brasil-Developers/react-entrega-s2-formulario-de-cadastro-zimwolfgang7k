@@ -20,6 +20,7 @@ export const schema = yup
             .matches(/.{8,}/, 'Deve conter ao menos 8 dígitos!'),
         confirmPassword: yup
             .string()
+            .required('Confirme sua senha!')
             .oneOf(
                 [yup.ref('password'), null],
                 'A senha é diferente da senha anterior!'

@@ -6,14 +6,14 @@ import Dashboard from '../pages/dashboard';
 
 const RoutesMain = () => {
     return (
-        <AnimatePresence>
+
             <Routes>
                 <Route path="*" element={<Navigate to="/login" />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
-        </AnimatePresence>
+
     );
 };
 

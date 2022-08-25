@@ -2,20 +2,21 @@ import { Title3, Headline } from '../../style/typography';
 import { TechCard } from './style';
 import { AiFillDelete } from 'react-icons/ai';
 import { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext, ITechsUser, IUser } from '../../contexts/AuthContext';
 
-const TechItem = ({ tech }) => {
-    const { deleteTech } = useContext(AuthContext);
+const TechItem = ({status, id, title}: ITechsUser) => {
+    const { deleteTech, techs} = useContext(AuthContext);
 
     return (
         <>
             <TechCard>
                 <div className="div-content">
-                    <Title3>{tech.title}</Title3>
-                    <Headline style={{ color: 'grey' }}>{tech.status}</Headline>
+                    
+                    <Title3>{title}</Title3>
+                    <Headline style={{ color: 'grey' }}>{status}</Headline>
                 </div>
                 <div className="button-container">
-                    <button onClick={() => deleteTech(tech.id)}>
+                    <button onClick={() => deleteTech(id)}>
                         <AiFillDelete size={21} style={{ color: 'white' }} />
                     </button>
                 </div>

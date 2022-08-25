@@ -13,7 +13,7 @@ import { schema } from '../../validators/login/login';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { motion } from 'framer-motion';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext, IUserLogin } from '../../contexts/AuthContext';
 
 const Login = () => {
     const { loginData } = useContext(AuthContext);
@@ -22,7 +22,7 @@ const Login = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({
+    } = useForm<IUserLogin>({
         resolver: yupResolver(schema),
     });
 

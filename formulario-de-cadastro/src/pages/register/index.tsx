@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { motion } from 'framer-motion';
 import { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext, IUserCadastro } from '../../contexts/AuthContext';
 
 const Register = () => {
     const { registerData } = useContext(AuthContext);
@@ -17,7 +17,7 @@ const Register = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({
+    } = useForm<IUserCadastro>({
         resolver: yupResolver(schema),
     });
 

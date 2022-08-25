@@ -6,7 +6,7 @@ import {
     TecButton,
 } from './style';
 import { AiOutlinePlus } from 'react-icons/ai';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext, ITechsUser } from '../../contexts/AuthContext';
 import ModalTech from '../ModalTech';
 import { useContext } from 'react';
 import TechItem from '../TechItem';
@@ -25,8 +25,8 @@ const TechList = () => {
             </TecButton>
             <ContainerListTec>
                 <ContainerListTecs>
-                    {techs.map(tech => (
-                        <TechItem tech={tech} key={tech.id} />
+                    {techs.map(({id, status, title, created_at, updated_at}) => (
+                        <TechItem key={id} id={id} status={status} title={title} created_at={created_at} updated_at={updated_at}/>
                     ))}
                 </ContainerListTecs>
             </ContainerListTec>
