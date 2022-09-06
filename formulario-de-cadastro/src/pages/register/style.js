@@ -50,25 +50,6 @@ export const Form = styled.form`
         color: var(--grey-1);
     }
 `;
-export const Input = styled.input`
-    display: flex;
-    align-items: center;
-    padding: 0px 16px;
-    height: 48px;
-
-    background: var(--grey-2);
-
-    border: 1px solid var(--grey-2);
-    border-radius: 4px;
-    color: var(--color-text);
-
-    &:focus{
-      border: 1px solid var(--grey-0);
-    }
-    &:focus::placeholder{
-      color: var(--grey-0);
-    }
-`;
 export const Button = styled.button`
     display: flex;
     justify-content: center;

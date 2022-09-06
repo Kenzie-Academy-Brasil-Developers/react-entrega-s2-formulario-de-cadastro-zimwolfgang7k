@@ -24,11 +24,6 @@ export default createGlobalStyle`
     --color-success: #3FE864;
     --color-error: #E83F5B;   
   }
-  @media (min-width: 700px) {
-    :root {
-      font-size: 62.5%;
-    }
-  }
   
   * {
     margin:0;
@@ -60,5 +55,24 @@ export const Container = styled.section`
     img {
         width: 110.06px;
         height: 21.21px;
+    }
+`;
+export const Input = styled.input`
+    display: flex;
+    align-items: center;
+    padding: 0px 16px;
+    height: 48px;
+
+    background: var(--grey-2);
+
+    border: 1px solid var(--grey-2);
+    border-radius: 4px;
+    color: var(--color-text);
+
+    &:focus {
+        border: 1px solid var(--grey-0);
+    }
+    &:focus::placeholder {
+        color: var(--grey-0);
     }
 `;
