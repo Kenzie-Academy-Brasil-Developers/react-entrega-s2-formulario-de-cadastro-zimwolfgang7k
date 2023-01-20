@@ -1,7 +1,5 @@
 ### Bem vindo ao KenzieHub, aplicação desenvolvida para administração de tecnologias.
 
-## <a href="formulario-de-cadastro-zimwolfgang7k.vercel.app/">Link da aplicação/</a>
-
 ## Tecnologias usadas:
 
 - React;
